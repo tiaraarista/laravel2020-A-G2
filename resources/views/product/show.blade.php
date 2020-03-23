@@ -57,10 +57,10 @@
           </tr>
         </tfoot>
         <tbody>
-          @foreach ($products as $brg)
+          @foreach ($product as $brg)
             <tr>
                 <td>{{ $brg->nama_barang }}</td>
-                <td>{{ $brg->category }}</td>
+                <td>{{ $brg->id_kategori }}</td>
                 <td>{{ $brg->harga }}</td>
                 <!-- <td>{{ $brg->spesifikasi }}</td> -->
                 <td>{{ $brg->qty }}</td>

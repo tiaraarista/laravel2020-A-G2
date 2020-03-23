@@ -50,10 +50,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $id_kategori)
+    public function show($id_kategori)
     {
-        $category = Category::findOrFail($id_kategori);
-        return view('categories.show', compact('category'));
+        $category = Category::where('id_kategori',$id_kategori)->get();
+        return view('categories.show', ['category' => $category]);
     }
 
     /**

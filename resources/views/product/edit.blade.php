@@ -35,13 +35,16 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-    <form action="{{route('product.store')}}" method="post">
-		{{ csrf_field() }}
-        <input type="hidden" id="id" name="id">
+    @foreach ($product as $pdc)
+    <form action="{{action('ProductController@update', $pdc->id_barang)}}" method="POST" class="needs-validation" novalidate>
+        @method('PATCH')
+        {{ csrf_field() }}
+		<input type="hidden" name="id" value="{{ $pdc->id_barang }}">
+        <input type="hidden" placeholder="nama" name="old_name" value="{{ $pdc->nama_barang }}">
         <div class="box-body">
             <div class="form-group">
                 <label >Name</label>
-                <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
+                <input type="text" class="form-control" id="nama" name="nama" value="{{ $pdc->nama_barang }}" autofocus required>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
@@ -60,33 +63,33 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Harga</label>
-                <input type="text" class="form-control" id="harga" name="harga"  autofocus required>
+                <input type="text" class="form-control" id="harga" name="harga" value="{{ $pdc->harga }}" autofocus required>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label >Spesifikasi</label>
-                <textarea type="text" class="form-control" id="editor" name="spesifikasi" required></textarea>
+                <textarea type="text" class="form-control" id="editor" name="spesifikasi" value=<?php echo "$pdc->spesifikasi";?> required></textarea>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label >Qty</label>
-                <input type="text" class="form-control" id="qty" name="qty"  autofocus required>
+                <input type="text" class="form-control" id="qty" name="qty" value="{{ $pdc->qty }}"  autofocus required>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
-        <input type="submit" class="btn btn-primary" value="Tambah Data">
+        <input type="submit" class="btn btn-primary" value="Edit Data">
         <a href="/product" class="btn btn-outline-primary">Kembali</a>
 	</form>
+    @endforeach
     </div>
   </div>
 </div>
 
 </div>
 <!-- /.container-fluid -->
-
 
 @endsection

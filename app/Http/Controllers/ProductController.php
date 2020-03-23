@@ -15,8 +15,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::all();
-		return view('product.index', compact('product'));
+        // $products = Product::all();
+        // $categories = Category::find($id_kategori)->categories;
+        
+        $products = Product::with('category')->get();
+        return view('product.index', compact('products'));
+        
     }
 
     /**
@@ -26,7 +30,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $categories = Category::all();
+        return view('product.create', compact('categories'));
     }
 
     /**
@@ -37,7 +42,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->id_kategori = $request->input('id_kategori');
+        $product->nama_barang = $request->input('nama');
+        $product->harga = $request->input('harga');
+        $product->spesifikasi = $request->input('spesifikasi');
+        $product->qty = $request->input('qty');
+        $product->save();
+        
+        return redirect('product')->with('success', 'Product baru telah ditambahkan');
     }
 
     /**
@@ -46,9 +59,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_barang)
     {
-        //
+        $product = Product::where('id_barang',$id_barang)->get();
+        return view('product.show', ['product' => $product]);
     }
 
     /**
@@ -57,12 +71,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_barang)
     {
+        $categories = Category::all();
         // mengambil data user berdasarkan id yang dipilih
-       $product = Product::where('id',$id)->get();
-       // passing data produk yang didapat ke view edit.blade.php
-       return view('product.edit',['product' => $product]);
+        $product = Product::where('id_barang',$id_barang)->get();
+        // passing data produk yang didapat ke view edit.blade.php
+        return view('product.edit',['product' => $product, 'categories' => $categories]);
     }
 
     /**
@@ -83,10 +98,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $id_barang)
     {
-        Product::destroy($id);
+        Product::destroy($id_barang);
         $nama = $request->name;
-        return redirect('categories')->with(['success' => 'Berhasil! Data '.$nama.' berhasil dihapus.']);
+        return redirect('product')->with(['success' => 'Berhasil! Data '.$nama.' berhasil dihapus.']);
     }
 }

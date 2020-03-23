@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
 
             $table->string('nama_barang');
             $table->integer('harga');
-            $table->string('spesifikasi');
+            $table->text('spesifikasi');
             $table->integer('qty');
             $table->timestamps();
 

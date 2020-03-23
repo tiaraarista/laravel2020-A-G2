@@ -8,4 +8,10 @@ class Category extends Model
 {
     protected $table = 'categories';
     protected $primaryKey = 'id_kategori';
+    protected $fillable = ['nama_kategori'];
+
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
 }

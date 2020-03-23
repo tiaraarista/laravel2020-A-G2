@@ -37,17 +37,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-			'name' => 'required',
-			'email' => 'required|unique:suppliers',
-		]);
-
-		User::create($request->all());
-
-		return response()->json([
-			'success' => true,
-			'message' => 'Suppliers Created',
-		]);
+        $usr = new User;
+        $usr->nama_kategori = $request->get('nama');
+        $usr->save();
+        
+        return redirect('categories')->with('success', 'Kategori baru telah ditambahkan');
 
     }
 
@@ -57,10 +51,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $id)
+    public function show($id)
     {
-        $user = User::findOrFail($id);
-        return view('user.show', compact('user'));
+        $user = User::where('id',$id)->get();
+        return view('user.show', ['user' => $user]);
     }
 
     /**

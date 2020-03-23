@@ -55,7 +55,8 @@
                 <td>{{ $usr->name }}</td>
                 <td>{{ $usr->email }}</td>
                 <td>{{ $usr->role }}</td>
-                <td><center><a href="{{route('user.show', $usr->id)}}" class="btn btn-dark"><i class="fas fa-eye"></i> Lihat</a> <a href="#" class="btn btn-dark"><i class="fas fa-user-edit"></i> Edit</a><br>
+                <td><center><a href="{{route('user.show', $usr->id)}}" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a> 
+                <a href="{{route('user.edit', $usr->id)}}" class="btn btn-primary"><i class="fas fa-user-edit"></i> Edit</a><br>
                 <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus"><i class="fas fa-trash-alt"></i>  
                 Hapus</button> -->
                 <form action="{{route('user.destroy', $usr->id)}}" method="post">
