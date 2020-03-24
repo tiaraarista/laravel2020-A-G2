@@ -19,7 +19,7 @@ class ProductController extends Controller
         // $categories = Category::find($id_kategori)->categories;
         
         $products = Product::with('category')->get();
-        return view('product.index', compact('products'));
+        return view('product.index', compact('products','category'));
         
     }
 
@@ -87,9 +87,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_barang)
     {
-        //
+        $product = Product::findOrFail($id_barang);
+        $product->nama_barang = $request->nama_barang;
+        $product->id_kategori = $request->id_kategori;
+        $product->harga = $request->harga;
+        $product->spesifikasi = $request->spesifikasi;
+        $product->qty = $request->qty;
+        $product->save();
+
+         // alihkan halaman ke halaman Index
+         if($request->old_name == $request->nama_barang){
+            return redirect('/product')->with(['error' => 'Gagal Edit! Data masih sama!']);
+        }else{
+            return redirect('/product')->with(['success' => 'Berhasil! mengubah '.$request->old_name.' menjadi '.$request->nama_kategori]);
+        }
     }
 
     /**

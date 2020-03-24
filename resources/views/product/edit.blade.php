@@ -44,7 +44,7 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Name</label>
-                <input type="text" class="form-control" id="nama" name="nama" value="{{ $pdc->nama_barang }}" autofocus required>
+                <input type="text" class="form-control" id="nama" name="nama_barang" value="{{ $pdc->nama_barang }}" autofocus required>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
@@ -70,7 +70,7 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Spesifikasi</label>
-                <textarea type="text" class="form-control" id="editor" name="spesifikasi" value=<?php echo "$pdc->spesifikasi";?> required></textarea>
+                <textarea type="text" class="form-control" id="editor" name="spesifikasi" required><?php echo "$pdc->spesifikasi";?></textarea>
                 <span class="help-block with-errors"></span>
             </div>
         </div>

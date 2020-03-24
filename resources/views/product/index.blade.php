@@ -60,7 +60,7 @@
           @foreach ($products as $brg)
             <tr>
                 <td>{{ $brg->nama_barang }}</td>
-                <td>{{ $brg->category }}</td>
+                <td>{{ $brg->category->nama_kategori }}</td>
                 <td>{{ $brg->harga }}</td>
                 <!-- <td>{{ $brg->spesifikasi }}</td> -->
                 <td>{{ $brg->qty }}</td>
