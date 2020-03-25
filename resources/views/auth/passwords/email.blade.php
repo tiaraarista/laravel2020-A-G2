@@ -4,7 +4,7 @@
 
 <br><br>
 <center><div class="limiter">
-	<div class="container-login100">
+	<div class="limiter">
 		<div>
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
@@ -20,8 +20,8 @@
 
                 <form class="login100-form validate-form" action="{{ route('password.email') }}" method="POST">
                 @csrf
-                    <span class="login100-form-title">Lupa Ya? :v</span>
-
+                    <span class="login100-form-title">Forgot Your Password?</span>
+                    <p>Just enter your email address below and we'll send you a link to reset your password!</p><br>
                     <div class="wrap-input100 validate-input">
                         <input class="input100" placeholder="Email Address" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         <span class="focus-input100"></span>

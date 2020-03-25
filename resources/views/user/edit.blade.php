@@ -33,26 +33,30 @@
   <div class="card-body">
     <div class="table-responsive">
     @foreach ($user as $usr)
-    <form action="{{route('user.update', $usr['id'])}}" method="POST" class="needs-validation" novalidate>
+    <form action="{{route('user.update', $usr->id)}}" method="POST" class="needs-validation" novalidate>
         @csrf
         <input type="hidden" name="_method" value="PUT">
-        <input type="hidden" placeholder="nama" name="old_name" value="{{ $usr['name'] }}">
-        <label>Nama :</label>
-        <input type="text" class="form-control" placeholder="Masukan Nama" name="name" value="{{ $usr['name'] }}" required>
-        <div class="invalid-feedback">
-        Harap masukkan Nama.
+        <input type="hidden" placeholder="nama" name="old_name" value="{{ $usr->name }}">
+        <div class="box-body">
+            <div class="form-group">
+                <label >Name</label>
+                <input type="text" class="form-control" name="name" value="{{ $usr->name }}" autofocus required>
+                <span class="help-block with-errors"></span>
+            </div>
         </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label >Email</label>
+                <input type="text" class="form-control" name="email" value="{{ $usr->email }}" autofocus required>
+                <span class="help-block with-errors"></span>
+            </div>
         </div>
-        <div class="form-group"> 
-        <label>Email :</label>
-        <input type="text" class="form-control" placeholder="Masukan Email" name="email" value="{{ $usr['email'] }}" required>
-        <div class="invalid-feedback">
-        Harap masukkan Email.
-        </div>
-        </div>
-        <div class="form-group"> 
-        <label>Role :</label>
-        <input type="text" class="form-control" name="role" value="{{ $usr['role'] }}" readonly=true required>
+        <div class="box-body">
+            <div class="form-group">
+                <label >Email</label>
+                <input type="text" class="form-control" name="role" value="{{ $usr->role }}" autofocus required>
+                <span class="help-block with-errors"></span>
+            </div>
         </div>
         <input type="submit" class="btn btn-primary" value="Edit Data">
         <a href="/user" class="btn btn-outline-primary">Kembali</a>

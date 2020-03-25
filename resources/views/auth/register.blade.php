@@ -32,7 +32,7 @@
 
 		<form class="login100-form validate-form" action="{{ route('register') }}" method="POST">
         @csrf
-			<span class="login100-form-title">Daftar Dulu Gaes</span>
+			<span class="login100-form-title">Create an Account!</span>
 
             <div class="wrap-input100 validate-input">
 				<input class="input100" placeholder="Nama" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -59,7 +59,7 @@
 			</div>
 
             <div class="wrap-input100 validate-input">
-				<input class="input100" placeholder="Password" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+				<input class="input100" placeholder="Password Confirm" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 				<span class="focus-input100"></span>
 				<span class="symbol-input100">
 					<i class="fa fa-lock" aria-hidden="true"></i>

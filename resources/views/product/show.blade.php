@@ -38,9 +38,8 @@
           <tr>
             <th>Name</th>
             <th>Kategori</th>
-            <!-- <th></th> -->
-            <!-- <th>Spek</th> -->
             <th>Harga</th>
+            <th><center>Spesifikasi</center></th>
             <th>Qty</th>
             <th><center>Action</center></th>
           </tr>
@@ -49,8 +48,7 @@
           <tr>
             <th>Name</th>
             <th>Kategori</th>
-            <!-- <th></th> -->
-            <!-- <th>Spek</th> -->
+            <th>Spek</th>
             <th>Harga</th>
             <th>Qty</th>
             <th><center>Action</center></th>
@@ -59,12 +57,12 @@
         <tbody>
           @foreach ($product as $brg)
             <tr>
-                <td>{{ $brg->nama_barang }}</td>
-                <td>{{ $brg->id_kategori }}</td>
-                <td>{{ $brg->harga }}</td>
-                <!-- <td>{{ $brg->spesifikasi }}</td> -->
-                <td>{{ $brg->qty }}</td>
-                <td><center><a href="{{action('ProductController@show', $brg['id_barang'])}}" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a> 
+                <td class="align-middle">{{ $brg->nama_barang }}</td>
+                <td class="align-middle">{{ $brg->id_kategori }}</td>
+                <td class="align-middle">{{ $brg->harga }}</td>
+                <td class="align-middle"><?php echo "$brg->spesifikasi";?></td>
+                <td class="align-middle">{{ $brg->qty }}</td>
+                <td class="align-middle"><center><a href="{{action('ProductController@show', $brg['id_barang'])}}" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a> 
                 <a href="{{action('ProductController@edit', $brg['id_barang'])}}" class="btn btn-primary"><i class="fas fa-user-edit"></i> Edit</a><br>
                 <form action="{{action('CategoryController@destroy', $brg['id_barang'])}}" method="post">
                     @csrf

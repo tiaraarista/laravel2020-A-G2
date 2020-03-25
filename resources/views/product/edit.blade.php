@@ -44,14 +44,14 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Name</label>
-                <input type="text" class="form-control" id="nama" name="nama_barang" value="{{ $pdc->nama_barang }}" autofocus required>
+                <input type="text" class="form-control" name="nama_barang" value="{{ $pdc->nama_barang }}" autofocus required>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
         <div class="box-body">
           <div class="form-group">
               <label >Category</label>
-              <select name="id_kategori" class="form-control">
+              <select name="id_kategori" class="form-control" required>
                   <option value="" disabled selected>Select a Category</option>
                   @foreach($categories as $ctg)
                   <option value="{{ $ctg->id_kategori }}">{{ $ctg->nama_kategori }}</option>
@@ -91,5 +91,25 @@
 
 </div>
 <!-- /.container-fluid -->
+
+<script>
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
 
 @endsection

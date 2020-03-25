@@ -24,6 +24,11 @@
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Products</h1><br>
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success" role="alert"><b>{{ $message }}</b></div>
+    @elseif($message = Session::get('error'))
+    <div class="alert alert-danger" role="alert"><b>{{ $message }}</b></div>
+    @endif
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -38,8 +43,6 @@
           <tr>
             <th>Name</th>
             <th>Kategori</th>
-            <!-- <th></th> -->
-            <!-- <th>Spek</th> -->
             <th>Harga</th>
             <th>Qty</th>
             <th><center>Action</center></th>
@@ -49,8 +52,6 @@
           <tr>
             <th>Name</th>
             <th>Kategori</th>
-            <!-- <th></th> -->
-            <!-- <th>Spek</th> -->
             <th>Harga</th>
             <th>Qty</th>
             <th><center>Action</center></th>
@@ -60,9 +61,8 @@
           @foreach ($products as $brg)
             <tr>
                 <td>{{ $brg->nama_barang }}</td>
-                <td>{{ $brg->category->nama_kategori }}</td>
+                <td>{{ $brg->id_kategori }}</td>
                 <td>{{ $brg->harga }}</td>
-                <!-- <td>{{ $brg->spesifikasi }}</td> -->
                 <td>{{ $brg->qty }}</td>
                 <td><center><a href="{{action('ProductController@show', $brg['id_barang'])}}" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a> 
                 <a href="{{action('ProductController@edit', $brg['id_barang'])}}" class="btn btn-primary"><i class="fas fa-user-edit"></i> Edit</a><br>

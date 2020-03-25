@@ -38,7 +38,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $usr = new User;
-        $usr->nama_kategori = $request->get('nama');
+        $usr->name = $request->get('name');
         $usr->save();
         
         return redirect('categories')->with('success', 'Kategori baru telah ditambahkan');
@@ -86,10 +86,10 @@ class UserController extends Controller
         $user->save();
 
          // alihkan halaman ke halaman Index
-         if($request->old_name == $request->nama_kategori){
-            return redirect('/categories')->with(['error' => 'Gagal Edit! Data masih sama!']);
+         if($request->old_name == $request->name){
+            return redirect('/user')->with(['error' => 'Gagal Edit! Data masih sama!']);
         }else{
-            return redirect('/categories')->with(['success' => 'Berhasil! mengubah '.$request->old_name.' menjadi '.$request->nama_kategori]);
+            return redirect('/user')->with(['success' => 'Berhasil! mengubah '.$request->old_name.' menjadi '.$request->name]);
         }
     }
 

@@ -24,12 +24,17 @@
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Users</h1><br>
+@if ($message = Session::get('success'))
+    <div class="alert alert-success" role="alert"><b>{{ $message }}</b></div>
+    @elseif($message = Session::get('error'))
+    <div class="alert alert-danger" role="alert"><b>{{ $message }}</b></div>
+    @endif
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> -->
-    <!-- <a href="{{route('user.create')}}" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Add Category</a> -->
+    <a href="{{route('user.create')}}" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Add User</a>
   </div>
   <div class="card-body">
     <div class="table-responsive">

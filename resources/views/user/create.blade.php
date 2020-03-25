@@ -37,28 +37,28 @@
         <input type="hidden" id="id" name="id">
         <div class="box-body">
             <div class="form-group">
-                <label >Name</label>
+                <label>Name</label>
                 <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
-                <label >Name</label>
+                <label>Email</label>
                 <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
-                <label >Name</label>
+                <label>Password</label>
                 <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
-                <label >Name</label>
+                <label>Password Confirm</label>
                 <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
                 <span class="help-block with-errors"></span>
             </div>

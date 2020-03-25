@@ -15,11 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // $products = Product::all();
-        // $categories = Category::find($id_kategori)->categories;
-        
-        $products = Product::with('category')->get();
-        return view('product.index', compact('products','category'));
+        $products = Product::all();
+        return view('product.index', compact('products'));
         
     }
 
@@ -74,7 +71,7 @@ class ProductController extends Controller
     public function edit($id_barang)
     {
         $categories = Category::all();
-        // mengambil data user berdasarkan id yang dipilih
+        // mengambil data Produk berdasarkan id yang dipilih
         $product = Product::where('id_barang',$id_barang)->get();
         // passing data produk yang didapat ke view edit.blade.php
         return view('product.edit',['product' => $product, 'categories' => $categories]);
@@ -101,7 +98,7 @@ class ProductController extends Controller
          if($request->old_name == $request->nama_barang){
             return redirect('/product')->with(['error' => 'Gagal Edit! Data masih sama!']);
         }else{
-            return redirect('/product')->with(['success' => 'Berhasil! mengubah '.$request->old_name.' menjadi '.$request->nama_kategori]);
+            return redirect('/product')->with(['success' => 'Berhasil! mengubah '.$request->old_name.' menjadi '.$request->nama_barang]);
         }
     }
 

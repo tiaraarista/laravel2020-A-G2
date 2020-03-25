@@ -60,6 +60,7 @@
                       <i class="fas fa-cube fa-2x text-gray-300"></i>
                     </div>
                   </div>
+                  <a href="/product" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
               </div>
             </div>
