@@ -10,6 +10,20 @@
 
     <title>{{ config('app.name', 'Tivia') }}</title>
 
+    <!-- Custom fonts for this template-->
+    <link href="{{asset('template/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('assets/vendor/jquery/jquery-3.2.1.min.js') }}" defer></script>
@@ -43,11 +57,11 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+        <nav class="navbar navbar-expand-md">
+            <div class="container" style="margin-top: 25px">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     <!-- {{ config('app.name', 'Laravel') }} -->
-                <img src="{{ asset('images/Tivia.png') }}" style="width:200px;" alt="Tivia">
+                <img src="{{ asset('images/TiviaWhite.png') }}" style="width:200px;" alt="Tivia">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -64,29 +78,26 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-light" href="{{ route('login') }}"><i class="fas fa-lg fa-fw fa-rocket"></i>{{ __(' Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-light" href="{{ route('register') }}"><i class="fas fa-lg fa-fw fa-key "></i>{{ __(' Register') }}</a>
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link text-light" aria-haspopup="true" aria-expanded="false" v-pre href="{{ url('/home') }}"><i class="fas fa-lg fa-fw fa-tachometer-alt"></i>{{ __(' Dashboard') }}</a>
+                            </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>  
+                                    <img class="img-profile rounded-circle" style="width:25px;" src="{{ asset('images/user.png') }}">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {{ __('Logout') }}</a>
                                 </div>
                             </li>
                         @endguest
@@ -99,5 +110,46 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                {{ __('Logout') }}
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Footer -->
+    <footer class="sticky-footer" style="margin-top: 130px">
+        <div class="container">
+          <div class="copyright text-center">
+            <h6 class="m-0 font-weight-bold text-white">Tivia<sup>Cell</sup> - Inventory Management</h6>
+            <?php $date = date('Y')?>
+            <strong class="m-0 font-weight-bold text-white">Copyright &copy; {{$date}} 
+            <a href="https://github.com/tiaraarista" class="m-0 font-weight-bold text-light">Tivia</a>.</strong> 
+            <a class="m-0 font-weight-bold text-white">All rights reserved.</a>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
 </body>
 </html>

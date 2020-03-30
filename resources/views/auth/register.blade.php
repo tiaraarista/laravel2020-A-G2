@@ -4,9 +4,10 @@
 
 
 <br><br>
+<body class="bg-gradient-primary">
 <center><div class="limiter">
 	<div class="limiter">
-		<div class="container">
+		<div class="container"style="margin-top: 30px">
             @error('name')
                 <div class='alert alert-danger alert-dismissible'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
                     <strong>{{ $message }}</strong>
@@ -32,7 +33,7 @@
 
 		<form class="login100-form validate-form" action="{{ route('register') }}" method="POST">
         @csrf
-			<span class="login100-form-title">Create an Account!</span>
+			<span class="login100-form-title"style="margin-top: 30px">Create an Account!</span>
 
             <div class="wrap-input100 validate-input">
 				<input class="input100" placeholder="Nama" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -73,7 +74,7 @@
 	</div>
 </div>
 </div></center>
-<br><br><br>
+</body>
 
 
 <!-- <div class="container">

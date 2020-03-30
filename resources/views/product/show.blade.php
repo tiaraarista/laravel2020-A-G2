@@ -48,8 +48,8 @@
           <tr>
             <th>Name</th>
             <th>Kategori</th>
-            <th>Spek</th>
             <th>Harga</th>
+            <th><center>Spesifikasi</center></th>
             <th>Qty</th>
             <th><center>Action</center></th>
           </tr>

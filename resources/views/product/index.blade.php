@@ -61,15 +61,15 @@
           @foreach ($products as $brg)
             <tr>
                 <td>{{ $brg->nama_barang }}</td>
-                <td>{{ $brg->id_kategori }}</td>
+                <td>{{ $brg->category }}</td>
                 <td>{{ $brg->harga }}</td>
                 <td>{{ $brg->qty }}</td>
                 <td><center><a href="{{action('ProductController@show', $brg['id_barang'])}}" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a> 
                 <a href="{{action('ProductController@edit', $brg['id_barang'])}}" class="btn btn-primary"><i class="fas fa-user-edit"></i> Edit</a><br>
-                <form action="{{action('CategoryController@destroy', $brg['id_barang'])}}" method="post">
+                <form action="{{action('ProductController@destroy', $brg['id_barang'])}}" method="post">
                     @csrf
                     <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" value="{{$brg->id}}" name="name">
+                    <input type="hidden" value="{{$brg->nama_barang}}" name="nama_barang">
                     <input type="submit" value="Hapus" onclick="return alert('Apakah anda yakin?')">
                 </form>
                 </center>

@@ -5,9 +5,10 @@
 
 
 <br><br>
+<body class="bg-gradient-primary">
 <center><div class="limiter">
     <div class="limiter">
-		<div class="container">
+		<div class="container" style="margin-top: 30px">
         @error('email')
             <div class='alert alert-danger alert-dismissible'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong><i class='fas fa-times'></i> Gagal!</strong> Email atau Password yang anda masukkan salah.</div>
         @enderror
@@ -22,7 +23,7 @@
 
 		<form class="login100-form validate-form" action="{{ route('login') }}" method="POST">
         @csrf
-			<span class="login100-form-title">Login Dulu Gaes</span>
+			<span class="login100-form-title" style="margin-top: 30px">Login Dulu Gaes</span>
 
 			<div class="wrap-input100 validate-input">
 				<input class="input100" placeholder="Email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -63,7 +64,7 @@
 	</div>
 </div>
 </div></center>
-<br><br><br>
+</body>
 
 
 <!-- <div class="container">

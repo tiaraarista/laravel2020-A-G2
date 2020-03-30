@@ -122,6 +122,7 @@
 <!-- /.container-fluid -->
 
 </div>
+</div>
 <!-- End of Main Content -->
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
@@ -156,12 +157,12 @@
   </div>
 
     <!-- Footer -->
-    <footer class="sticky-footer bg-white">
+    <footer class="sticky-footer" style="margin-top:30px">
         <div class="container">
           <div class="copyright text-center">
-            <h6 class="m-0 font-weight-bold text-primary">Tivia Cell - Inventory Management</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tivia<sup>Cell</sup> - Inventory Management</h6>
             <?php $date = date('Y')?>
-            <strong>Copyright &copy; {{$date}} <a href="#">Tivia</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; {{$date}} <a href="https://github.com/tiaraarista">Tivia</a>.</strong> All rights reserved.
         </div>
       </div>
     </footer>
