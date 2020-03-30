@@ -15,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        // $products = Product::all();
+        // $categories = Category::all();
+        $products = Product::with('category')->get();
         return view('product.index', compact('products'));
         
     }
@@ -111,7 +113,7 @@ class ProductController extends Controller
     public function destroy(Request $request, $id_barang)
     {
         Product::destroy($id_barang);
-        $nama = $request->name;
-        return redirect('product')->with(['success' => 'Berhasil! Data '.$nama.' berhasil dihapus.']);
+        $nama_barang = $request->nama_barang;
+        return redirect('/product')->with(['success' => 'Berhasil! '.$nama_barang.' berhasil dihapus.']);
     }
 }
