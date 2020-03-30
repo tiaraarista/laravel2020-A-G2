@@ -58,7 +58,7 @@
           @foreach ($product as $brg)
             <tr>
                 <td class="align-middle">{{ $brg->nama_barang }}</td>
-                <td class="align-middle">{{ $brg->id_kategori }}</td>
+                <td class="align-middle">{{ $brg->category->nama_kategori }}</td>
                 <td class="align-middle">{{ $brg->harga }}</td>
                 <td class="align-middle"><?php echo "$brg->spesifikasi";?></td>
                 <td class="align-middle">{{ $brg->qty }}</td>

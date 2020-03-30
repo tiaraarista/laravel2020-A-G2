@@ -59,7 +59,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md">
             <div class="container" style="margin-top: 25px">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <!-- {{ config('app.name', 'Laravel') }} -->
                 <img src="{{ asset('images/TiviaWhite.png') }}" style="width:200px;" alt="Tivia">
                 </a>

@@ -61,7 +61,7 @@
           @foreach ($products as $brg)
             <tr>
                 <td>{{ $brg->nama_barang }}</td>
-                <td>{{ $brg->category }}</td>
+                <td>{{ $brg->category->nama_kategori }}</td>
                 <td>{{ $brg->harga }}</td>
                 <td>{{ $brg->qty }}</td>
                 <td><center><a href="{{action('ProductController@show', $brg['id_barang'])}}" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a> 
