@@ -31,7 +31,7 @@
       <li class="nav-item active"><a class="nav-link" href="{{ route('categories.index') }}"><i class="fas fa-fw fa-list-alt"></i><span>Categories</span></a></li>
       <li class="nav-item active"><a class="nav-link" href="{{ route('product.index') }}"><i class="fas fa-fw fa-cube"></i><span>Products</span></a></li>
       <li class="nav-item active"><a class="nav-link" href="{{ route('stockin.index') }}"><i class="fas fa-fw fa-plus"></i><span>Stock In</span></a></li>
-      <li class="nav-item active"><a class="nav-link" href="index.html"><i class="fas fa-fw fa-minus"></i><span>Stock Out</span></a></li>
+      <li class="nav-item active"><a class="nav-link" href="{{ route('stockout.index') }}"><i class="fas fa-fw fa-minus"></i><span>Stock Out</span></a></li>
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
