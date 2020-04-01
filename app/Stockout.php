@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stockout extends Model
 {
+    protected $guarded = [];
+
     protected $table = 'stockouts';
     protected $primaryKey = 'id_stockout';
     protected $fillable = ['id_barang','qty'];
