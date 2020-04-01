@@ -12,7 +12,12 @@ class Product extends Model
 
     public function category()
     {
-        return $this->hasOne(Category::class,'id_kategori');
+        return $this->belongsTo(Category::class,'id_kategori');
+    }
+
+    public function stockin()
+    {
+        return $this->hasMany(Stockin::class, 'id_barang');
     }
 
 }

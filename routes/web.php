@@ -27,5 +27,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('user', 'UserController');
 Route::resource('categories', 'CategoryController');
-
 Route::resource('product', 'ProductController');
+Route::resource('stockin', 'StockinController');

@@ -97,11 +97,8 @@ class ProductController extends Controller
         $product->save();
 
          // alihkan halaman ke halaman Index
-         if($request->old_name == $request->nama_barang){
-            return redirect('/product')->with(['error' => 'Gagal Edit! Data masih sama!']);
-        }else{
-            return redirect('/product')->with(['success' => 'Berhasil! mengubah '.$request->old_name.' menjadi '.$request->nama_barang]);
-        }
+            return redirect('/product')->with(['success' => 'Berhasil! diubah']);
+        
     }
 
     /**

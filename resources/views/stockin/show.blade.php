@@ -43,6 +43,7 @@
           <tr>
             <th>ID</th>
             <th>Nama</th>
+            <th>Kategori</th>
             <th>Qty</th>
             <th>Created At</th>
             <th><center>Action</center></th>
@@ -52,19 +53,21 @@
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Kategori</th>
             <th>Qty</th>
             <th>Created At</th>
             <th><center>Action</center></th>
           </tr>
         </tfoot>
         <tbody>
-          @foreach ($stockins as $stc)
+          @foreach ($stockin as $stc)
             <tr>
                 <td>{{ $stc->id_stockin }}</td>
                 <td>{{ $stc->product->nama_barang }}</td>
+                <td>{{ $stc->product->category->nama_kategori }}</td>
                 <td>{{ $stc->qty }}</td>
                 <td>{{ $stc->created_at }}</td>
-                <td>
+                <td> 
                 <form action="{{action('StockinController@destroy', $stc['id_stockin'])}}" method="post">
                 <center><a href="{{action('StockinController@show', $stc['id_stockin'])}}" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a>
                     @csrf
