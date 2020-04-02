@@ -23,7 +23,7 @@
 <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Products</h1><br>
+<h1 class="h3 mb-2 text-gray-800">Stock Out</h1><br>
     @if ($message = Session::get('success'))
     <div class="alert alert-success" role="alert"><b>{{ $message }}</b></div>
     @elseif($message = Session::get('error'))
