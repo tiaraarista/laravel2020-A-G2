@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -102,4 +103,5 @@ class UserController extends Controller
         $nama = $request->name;
         return redirect('/user')->with(['success' => 'Berhasil! Data '.$nama.' berhasil dihapus.']);
     }
+    
 }

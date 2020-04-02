@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+
 @section('top')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}">
@@ -64,6 +65,7 @@
 </div>
 
 </div>
+
 <!-- /.container-fluid -->
 
 
