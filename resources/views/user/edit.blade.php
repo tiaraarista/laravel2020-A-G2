@@ -53,8 +53,8 @@
         </div>
         <div class="box-body">
             <div class="form-group">
-                <label >Email</label>
-                <input type="text" class="form-control" name="role" value="{{ $usr->role }}" autofocus required>
+                <label >Role</label>
+                <input type="text" class="form-control" name="role" value="{{ $usr->role }}" autofocus required readonly>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
