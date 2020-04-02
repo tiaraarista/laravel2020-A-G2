@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $user = User::all();
-		return view('user.index', compact('user'));
+    return view('user.index', compact('user'));
     }
 
     /**
@@ -38,10 +39,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $usr = new User;
-        $usr->name = $request->get('name');
+        $usr->name = $request->get('nama');
+        $usr->email = $request->get('email');
+        $usr->password= bcrypt($request->password);
         $usr->save();
         
-        return redirect('categories')->with('success', 'Kategori baru telah ditambahkan');
+        return redirect('user')->with('success', 'User baru telah ditambahkan');
 
     }
 
@@ -86,11 +89,7 @@ class UserController extends Controller
         $user->save();
 
          // alihkan halaman ke halaman Index
-         if($request->old_name == $request->name){
-            return redirect('/user')->with(['error' => 'Gagal Edit! Data masih sama!']);
-        }else{
-            return redirect('/user')->with(['success' => 'Berhasil! mengubah '.$request->old_name.' menjadi '.$request->name]);
-        }
+         return redirect('/user')->with(['success' => 'Berhasil! mengubah ']);
     }
 
     /**
@@ -104,4 +103,5 @@ class UserController extends Controller
         $nama = $request->name;
         return redirect('/user')->with(['success' => 'Berhasil! Data '.$nama.' berhasil dihapus.']);
     }
+    
 }

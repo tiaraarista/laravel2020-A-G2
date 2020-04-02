@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+
 @section('top')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}">
@@ -53,8 +54,8 @@
         </div>
         <div class="box-body">
             <div class="form-group">
-                <label >Email</label>
-                <input type="text" class="form-control" name="role" value="{{ $usr->role }}" autofocus required>
+                <label >Role</label>
+                <input type="text" class="form-control" name="role" value="{{ $usr->role }}" autofocus required readonly>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
@@ -68,6 +69,7 @@
 
 </div>
 <!-- /.container-fluid -->
+
 
 
 @endsection
