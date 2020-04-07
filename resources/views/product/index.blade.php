@@ -1,24 +1,13 @@
 @extends('layouts.master')
 
 @section('top')
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}">
-
-    <!-- Custom styles for this page -->
-    <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
-
-    <!-- Page level plugins -->
+    <!-- {{-- Datatables --}} -->
     <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('template/js/demo/datatables-demo.js') }}"></script>
 @endsection
 
 @section('content')
+@include('sweet::alert')
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -38,18 +27,20 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table  id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
-        <thead>
+    <table class="table table-bordered data-table" width="100%" cellspacing="0">
+          <thead class="thead-light">
           <tr>
-            <th>Name</th>
-            <th>Kategori</th>
-            <th>Harga</th>
-            <th>Qty</th>
-            <th><center>Action</center></th>
+          <th>No</th>
+          <th>Name</th>
+          <th>Kategori</th>
+          <th>Harga</th>
+          <th>Qty</th>
+          <th><center>Action</center></th>
           </tr>
         </thead>
-        <tfoot>
+        <tfoot class="thead-light">
           <tr>
+            <th>No</th>
             <th>Name</th>
             <th>Kategori</th>
             <th>Harga</th>
@@ -58,23 +49,9 @@
           </tr>
         </tfoot>
         <tbody>
-          @foreach ($products as $brg)
             <tr>
-                <td>{{ $brg->nama_barang }}</td>
-                <td>{{ $brg->category->nama_kategori }}</td>
-                <td>{{ $brg->harga }}</td>
-                <td>{{ $brg->qty }}</td>
-                <td><center><a href="{{action('ProductController@show', $brg['id_barang'])}}" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a> 
-                <a href="{{action('ProductController@edit', $brg['id_barang'])}}" class="btn btn-primary"><i class="fas fa-user-edit"></i> Edit</a><br>
-                <form action="{{action('ProductController@destroy', $brg['id_barang'])}}" method="post">
-                    @csrf
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" value="{{$brg->nama_barang}}" name="nama_barang">
-                    <input type="submit" value="Hapus" onclick="return alert('Apakah anda yakin?')">
-                </form>
-                </center>
+            <td></td>
             </tr>
-          @endforeach
         </tbody>
       </table>
     </div>
@@ -84,5 +61,41 @@
 </div>
 <!-- /.container-fluid -->
 
+<script>
+$(function() {
+   const table = $('.data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {url:"{{ route('product.index') }}"},
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'nama_barang', name: 'nama_barang'},
+            {data: 'nama_kategori', name: 'nama_kategori'},
+            {data: 'harga', name: 'harga'},
+            {data: 'qty', name: 'qty'},
+            {data: 'action', name: 'action',orderable : false, searchable: false, sClass: 'text-center'}
+           ]
+          })
+        })
+
+        function deleteData(id_barang) {
+        swal({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+            if (willDelete) {
+                $('#data' + id_barang).submit();
+            }
+        })
+    }
+</script>    
 
 @endsection

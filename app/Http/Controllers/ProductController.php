@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use DataTables;
 
 class ProductController extends Controller
 {
@@ -13,12 +14,32 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $products = Product::all();
         // $categories = Category::all();
-        $products = Product::with('category')->get();
-        return view('product.index', compact('products'));
+        // $products = Product::with('category')->get();
+        // return view('product.index', compact('products'));
+
+        if($request->ajax()){
+            $data = Product::latest()->get();
+            return DataTables::of($data)->addIndexColumn()
+                ->editColumn('nama_kategori', function($data){
+                    return $data->category->nama_kategori;})
+                ->addColumn('action', function($data){ $c = csrf_field();
+                    return '
+                    <form action="'.route('product.destroy', $data->id_barang).'" method="post" id="data'. $data->id_barang.'">
+                    '.$c.'
+                        <input type="hidden" name="_method" value="DELETE">
+                    </form>
+                        <a href="'.route('product.show', $data->id_barang) .'" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i><span>&nbsp;Show</span></a>
+                        <a href="'.route('product.edit', $data->id_barang).'" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i><span>&nbsp;Edit</span></a>
+                        <button onclick="deleteData('. $data->id_barang .')" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</button>';
+                })
+            ->RawColumns(['action'])
+            ->make(true);
+        }
+        return view('product.index');
         
     }
 
@@ -58,9 +79,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_barang)
+    public function show($id)
     {
-        $product = Product::where('id_barang',$id_barang)->get();
+        $product = Product::where('id_barang',$id)->get();
         return view('product.show', ['product' => $product]);
     }
 
