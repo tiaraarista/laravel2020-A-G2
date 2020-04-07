@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Product;
+use DataTables;
 
 class CategoryController extends Controller
 {
@@ -12,11 +14,36 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        $categories = Category::all();
-        return view('categories.index', compact('categories'));
+        // $categories = Category::all();
+        // return view('categories.index', compact('categories'));
+
+        if($request->ajax()){
+            $data = Category::latest()->get();
+            return DataTables::of($data)->addIndexColumn()
+                ->addColumn('action', function($data){ $c = csrf_field();
+                    return '
+                    <form action="'.route('categories.destroy', $data->id_kategori).'" method="post" id="data'. $data->id_kategori.'">
+                    '.$c.'
+                        <input type="hidden" name="_method" value="DELETE">
+                    </form>
+                        <a href="'.route('categories.show', $data->id_kategori) .'" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i><span>&nbsp;Show</span></a>
+                        <a href="'.route('categories.edit', $data->id_kategori).'" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i><span>&nbsp;Edit</span></a>
+                        <button onclick="deleteData('. $data->id_kategori .')" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</button>';
+                })
+            ->RawColumns(['action'])
+            ->make(true);
+        }
+        return view('categories.index');
     }
+
+    // public function index()
+    // {
+    //     $categories = Category::all();
+    //     return view('categories.index', compact('categories'));
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -50,10 +77,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_kategori)
+    public function show($id)
     {
-        $category = Category::where('id_kategori',$id_kategori)->get();
-        return view('categories.show', ['category' => $category]);
+        $category = Category::where('id_kategori',$id)->get();
+        $products = Product::where('id_kategori',$id)->get();
+        return view('categories.show', ['category' => $category],['products' => $products]);
     }
 
     /**
@@ -64,9 +92,9 @@ class CategoryController extends Controller
      */
     public function edit($id_kategori)
     {
-        // mengambil data user berdasarkan id yang dipilih
+        // mengambil data kategori berdasarkan id yang dipilih
        $category = Category::where('id_kategori',$id_kategori)->get();
-       // passing data user yang didapat ke view edit.blade.php
+       // passing data kategori yang didapat ke view edit.blade.php
        return view('categories.edit',['category' => $category]);
     }
 
