@@ -13,12 +13,6 @@
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Products</h1><br>
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success" role="alert"><b>{{ $message }}</b></div>
-    @elseif($message = Session::get('error'))
-    <div class="alert alert-danger" role="alert"><b>{{ $message }}</b></div>
-    @endif
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
@@ -85,6 +79,8 @@ $(function() {
             icon: "warning",
             buttons: true,
             dangerMode: true,
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
         }).then((willDelete) => {
             $.ajaxSetup({
             headers: {
