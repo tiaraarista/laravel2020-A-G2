@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'created_at' => now(),
             'updated_at' => now(),
-            'role' => 'staff', 
+            'role' => '1', 
         ]);
     }
 }
