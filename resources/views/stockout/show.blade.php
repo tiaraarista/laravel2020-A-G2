@@ -50,8 +50,7 @@
                 <td>{{ $sto->product->nama_barang }}</td>
                 <td>{{ $sto->product->category->nama_kategori }}</td>
                 <td>{{ $sto->qty }}</td>
-                <td>{{ $sto->created_at }}</td>
-                <td>
+                <td>{{ $sto->created_at->format('d-m-Y H:i') }}</td>
             </tr>
           @endforeach
         </tbody>

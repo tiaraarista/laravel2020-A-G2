@@ -50,7 +50,7 @@
                 <td>{{ $stc->product->nama_barang }}</td>
                 <td>{{ $stc->product->category->nama_kategori }}</td>
                 <td>{{ $stc->qty }}</td>
-                <td>{{ $stc->created_at }}</td>
+                <td>{{ $stc->created_at->format('d-m-Y H:i') }}</td>
             </tr>
           @endforeach
         </tbody>

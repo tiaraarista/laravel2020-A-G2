@@ -8,12 +8,6 @@
 <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Categories</h1><br>
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success" role="alert"><b>{{ $message }}</b></div>
-    @elseif($message = Session::get('error'))
-    <div class="alert alert-danger" role="alert"><b>{{ $message }}</b></div>
-    @endif
 <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
 <!-- DataTales Example -->
@@ -29,14 +23,14 @@
           <tr>
             <th>No</th>
             <th>Kategori</th>
-            <th><center>Products</center></th>
+            <th>Products</th>
           </tr>
         </thead>
         <tfoot class="thead-light">
           <tr>
             <th>No</th>
             <th>Kategori</th>
-            <th><center>Products</center></th>
+            <th>Products</th>
           </tr>
         </tfoot>
         <tbody>
@@ -47,11 +41,13 @@
             <tr>
                 <td>{{$no++}}</td>
                 <td>{{ $ctg->nama_kategori }}</td>
-                <td><center>
+                <td>
+                        @php
+                            $n = 1;
+                        @endphp
                     @foreach ($products as $pdc)
-                        {{ $pdc->nama_barang }} <?php echo "&nbsp";?> | <?php echo "&nbsp";?>
+                    {{$n++}}. {{ $pdc->nama_barang }} <?php echo"</br>";?>
                     @endforeach
-                </center>
                 </td>
             </tr>
           @endforeach
