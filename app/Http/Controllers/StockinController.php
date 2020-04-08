@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Stockin;
 use App\Product;
+use DataTables;
 
 class StockinController extends Controller
 {
@@ -13,10 +14,32 @@ class StockinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $stockins = Stockin::with('product')->get();
-        return view('stockin.index', compact('stockins'));
+        // $stockins = Stockin::with('product')->get();
+        // return view('stockin.index', compact('stockins'));
+
+        if($request->ajax()){
+            $data = Stockin::latest()->get();
+            return DataTables::of($data)->addIndexColumn()
+                ->editColumn('nama_barang', function($data){
+                    return $data->product->nama_barang;})
+                ->editColumn('created_at', function ($data){
+                    return date('d-m-y H:i', strtotime($data->created_at) );
+                    })
+                ->addColumn('action', function($data){ $c = csrf_field();
+                    return '
+                    <form action="'.route('stockin.destroy', $data->id_stockin).'" method="post" id="data'. $data->id_stockin.'">
+                    '.$c.'
+                        <input type="hidden" name="_method" value="DELETE">
+                    </form>
+                        <a href="'.route('stockin.show', $data->id_stockin) .'" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i><span>&nbsp;Show</span></a>
+                        <button onclick="deleteData('. $data->id_stockin .')" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</button>';
+                })
+            ->RawColumns(['action'])
+            ->make(true);
+        }
+        return view('stockin.index');
     }
 
     /**

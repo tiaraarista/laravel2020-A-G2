@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Stockout;
 use App\Product;
+use DataTables;
 
 class StockoutController extends Controller
 {
@@ -13,10 +14,32 @@ class StockoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $stockouts = Stockout::with('product')->get();
-        return view('stockout.index', compact('stockouts'));
+        // $stockouts = Stockout::with('product')->get();
+        // return view('stockout.index', compact('stockouts'));
+
+        if($request->ajax()){
+            $data = Stockout::latest()->get();
+            return DataTables::of($data)->addIndexColumn()
+                ->editColumn('nama_barang', function($data){
+                    return $data->product->nama_barang;})
+                ->editColumn('created_at', function ($data){
+                    return date('d-m-y H:i', strtotime($data->created_at) );
+                    })
+                ->addColumn('action', function($data){ $c = csrf_field();
+                    return '
+                    <form action="'.route('stockout.destroy', $data->id_stockout).'" method="post" id="data'. $data->id_stockout.'">
+                    '.$c.'
+                        <input type="hidden" name="_method" value="DELETE">
+                    </form>
+                        <a href="'.route('stockout.show', $data->id_stockout) .'" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i><span>&nbsp;Show</span></a>
+                        <button onclick="deleteData('. $data->id_stockout .')" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</button>';
+                })
+            ->RawColumns(['action'])
+            ->make(true);
+        }
+        return view('stockout.index');
     }
 
     /**
@@ -92,7 +115,7 @@ class StockoutController extends Controller
      */
     public function destroy($id_stockout)
     {
-        Stockin::destroy($id_stockout);
+        Stockout::destroy($id_stockout);
         return redirect('/stockout')->with(['success' => 'Berhasil! Stok berhasil dihapus.']);
     }
 }
