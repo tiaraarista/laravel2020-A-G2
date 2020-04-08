@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DataTables;
 
 class UserController extends Controller
 {
@@ -16,8 +17,25 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $user = User::all();
-    return view('user.index', compact('user'));
+    //  $user = User::all();
+    //  return view('user.index', compact('user'));
+        if($request->ajax()){
+            $data = User::latest()->get();
+            return DataTables::of($data)->addIndexColumn()
+                ->addColumn('action', function($data){ $c = csrf_field();
+                    return '
+                    <form action="'.route('user.destroy', $data->id).'" method="post" id="data'. $data->id.'">
+                    '.$c.'
+                        <input type="hidden" name="_method" value="DELETE">
+                    </form>
+                        <a href="'.route('user.show', $data->id) .'" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i><span>&nbsp;Show</span></a>
+                        <a href="'.route('user.edit', $data->id).'" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i><span>&nbsp;Edit</span></a>
+                        <button onclick="deleteData('. $data->id .')" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</button>';
+                })
+            ->RawColumns(['action'])
+            ->make(true);
+        }
+        return view('user.index');
     }
 
     /**
