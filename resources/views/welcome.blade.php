@@ -2,9 +2,6 @@
 @extends('layouts.app')
 
 @section('top')
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}">
-
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
 @endsection
@@ -18,5 +15,17 @@
             </div>
         </div>
     </body>
-
+    <!-- Footer -->
+    <footer class="sticky-footer">
+        <div class="container">
+          <div class="copyright text-center">
+            <h6 class="m-0 font-weight-bold text-white">Tivia<sup>Cell</sup> - Inventory Management</h6>
+            <?php $date = date('Y')?>
+            <strong class="m-0 font-weight-bold text-white">Copyright &copy; {{$date}} 
+            <a href="https://github.com/tiaraarista" class="m-0 font-weight-bold text-light">Tivia</a>.</strong> 
+            <a class="m-0 font-weight-bold text-white">All rights reserved.</a>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
 @endsection

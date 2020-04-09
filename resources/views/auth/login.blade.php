@@ -4,14 +4,14 @@
 
 <body class="bg-gradient-primary">
 <center><div class="limiter">
-    <div class="limiter">
-		<div class="container" style="margin-top: 30px">
+        
         @error('email')
-            <div class='alert alert-danger alert-dismissible'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong><i class='fas fa-times'></i> Gagal!</strong> Email atau Password yang anda masukkan salah.</div>
+            <div class='alert alert-danger alert-dismissible'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Gagal!</strong> Email atau Password salah.</div>
         @enderror
         @error('password')
-            <div class='alert alert-danger alert-dismissible'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong><i class='fas fa-times'></i> Gagal!</strong> Email atau Password yang anda masukkan salah.</div>
+            <div class='alert alert-danger alert-dismissible'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong></i> Gagal!</strong> Email atau Password salah.</div>
         @enderror
+    <div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
 					<br>
@@ -59,7 +59,6 @@
             </div>
 		</form>
 	</div>
-</div>
 </div></center>
 </body>
 

@@ -3,8 +3,7 @@
 @section('content')
 <body class="bg-gradient-primary">
 <center><div class="limiter">
-	<div class="limiter">
-        <div class="container"style="margin-top: 30px">
+    <div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
 					<br><img src="{{ asset('images/img-login.png') }}" alt="IMG">

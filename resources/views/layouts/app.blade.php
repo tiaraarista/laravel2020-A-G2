@@ -52,7 +52,6 @@
     <link href="{{ asset('assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/util.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/main_styles.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -64,14 +63,12 @@
                 <img src="{{ asset('images/TiviaWhite.png') }}" style="width:200px;" alt="Tivia">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-lg fa-fw fa-navicon" style="color:#fff;"></i>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    <ul class="navbar-nav mr-auto"></ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -137,19 +134,5 @@
       </div>
     </div>
   </div>
-
-    <!-- Footer -->
-    <footer class="sticky-footer">
-        <div class="container">
-          <div class="copyright text-center">
-            <h6 class="m-0 font-weight-bold text-white">Tivia<sup>Cell</sup> - Inventory Management</h6>
-            <?php $date = date('Y')?>
-            <strong class="m-0 font-weight-bold text-white">Copyright &copy; {{$date}} 
-            <a href="https://github.com/tiaraarista" class="m-0 font-weight-bold text-light">Tivia</a>.</strong> 
-            <a class="m-0 font-weight-bold text-white">All rights reserved.</a>
-        </div>
-      </div>
-    </footer>
-    <!-- End of Footer -->
 </body>
 </html>
