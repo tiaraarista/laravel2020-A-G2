@@ -2,9 +2,6 @@
 
 @section('content')
 
-
-
-<br><br>
 <body class="bg-gradient-primary">
 <center><div class="limiter">
     <div class="limiter">

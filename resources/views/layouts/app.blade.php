@@ -139,7 +139,7 @@
   </div>
 
     <!-- Footer -->
-    <footer class="sticky-footer" style="margin-top: 130px">
+    <footer class="sticky-footer">
         <div class="container">
           <div class="copyright text-center">
             <h6 class="m-0 font-weight-bold text-white">Tivia<sup>Cell</sup> - Inventory Management</h6>

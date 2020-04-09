@@ -12,7 +12,7 @@
 @section('content')
     <body class="bg-gradient-primary">
         <div class="container" style="margin-top: 150px">
-            <div class="text-center">
+            <div class="text-center"  style="margin-bottom: 210px">
                 <h1 class="text-white">{{ __('TIVIA') }}<sup>Cell</sup></h1><br>
                 <h2 class="text-white">{{ __('Sistem Inventory Management') }}</h2>
             </div>
