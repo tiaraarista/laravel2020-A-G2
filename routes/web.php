@@ -17,15 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('dashboard', function () {
-	return view('layouts.master');
-});
+// Route::get('dashboard', function () {
+// 	return view('layouts.master');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::middleware('auth')->group(function(){
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('user', 'UserController');
     Route::resource('categories', 'CategoryController');
     Route::resource('product', 'ProductController');
