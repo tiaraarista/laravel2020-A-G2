@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+@include('sweet::alert')
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -77,6 +78,8 @@ $(function() {
             icon: "warning",
             buttons: true,
             dangerMode: true,
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
         }).then((willDelete) => {
             $.ajaxSetup({
             headers: {
