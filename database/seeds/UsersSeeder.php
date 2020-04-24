@@ -22,7 +22,7 @@ class UsersSeeder extends Seeder
                 'email'=> $faker->safeEmail,
                 'email_verified_at' => now(),
                 'password' => bcrypt(12345678),
-                'id_role' => '1', 
+                'id_role' => '2',
             ]);
         }
     }
