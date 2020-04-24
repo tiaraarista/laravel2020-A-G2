@@ -55,7 +55,12 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Role</label>
-                <input type="text" class="form-control" name="role" value="{{ $usr->role }}" autofocus required readonly>
+                <select name="id_role" class="form-control" required>
+                    <option value="" disabled selected>Select a Role</option>
+                    @foreach($roles as $role)
+                    <option value="{{ $role->id_role }}">{{ $role->role }}</option>
+                    @endforeach
+                </select>
                 <span class="help-block with-errors"></span>
             </div>
         </div>
@@ -69,7 +74,25 @@
 
 </div>
 <!-- /.container-fluid -->
-
+<script>
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
 
 
 @endsection

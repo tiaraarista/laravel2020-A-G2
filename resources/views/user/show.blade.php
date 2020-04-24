@@ -39,7 +39,7 @@
             <tr>
                 <td>{{ $usr->name }}</td>
                 <td>{{ $usr->email }}</td>
-                <td>{{ $usr->role }}</td>
+                <td>{{ $usr->role->role }}</td>
             </tr>
           @endforeach
         </tbody>
