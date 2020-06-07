@@ -21,10 +21,10 @@ Route::get('/', function () {
 // 	return view('layouts.master');
 // });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::middleware('auth')->group(function(){
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
     Route::resource('user', 'UserController');
     Route::resource('categories', 'CategoryController');
     Route::resource('product', 'ProductController');
