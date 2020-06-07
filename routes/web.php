@@ -30,4 +30,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('product', 'ProductController');
     Route::resource('stockin', 'StockinController');
     Route::resource('stockout', 'StockoutController');
+
+    Route::get('change-password', 'PasswordController@edit')->name('change-password');
+    Route::patch('change-password', 'PasswordController@update')->name('change-password.update');
 });
