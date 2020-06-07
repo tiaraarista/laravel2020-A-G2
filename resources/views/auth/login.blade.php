@@ -5,12 +5,12 @@
 <body class="bg-gradient-primary">
 <center><div class="limiter">
         
-        @error('email')
+        <!-- @error('email')
             <div class='alert alert-danger alert-dismissible'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Gagal!</strong> Email atau Password salah.</div>
         @enderror
         @error('password')
             <div class='alert alert-danger alert-dismissible'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong></i> Gagal!</strong> Email atau Password salah.</div>
-        @enderror
+        @enderror -->
     <div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
@@ -23,19 +23,29 @@
 			<span class="login100-form-title" style="margin-top: 30px">Login Dulu Gaes</span>
 
 			<div class="wrap-input100 validate-input">
-				<input class="input100" placeholder="Email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-				<span class="focus-input100"></span>
+				<input class=" form-control @error('email') is-invalid @enderror" placeholder="Email" id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+				<!-- <span class="focus-input100"></span>
 				<span class="symbol-input100">
 					<i class="fa fa-envelope" aria-hidden="true"></i>
-				</span>
+				</span> -->
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 			</div>
 
 			<div class="wrap-input100 validate-input">
-				<input class="input100" placeholder="Password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-				<span class="focus-input100"></span>
+				<input placeholder="Password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+				<!-- <span class="focus-input100"></span>
 				<span class="symbol-input100">
 					<i class="fa fa-lock" aria-hidden="true"></i>
-				</span>
+				</span> -->
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 			</div>
 
             <div class="container-login100-form-btn">
