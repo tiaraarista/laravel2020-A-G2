@@ -57,9 +57,13 @@
                 <label >Role</label>
                 <select name="id_role" class="form-control" required>
                     <option value="" disabled selected>Select a Role</option>
-                    @foreach($roles as $role)
-                    <option value="{{ $role->id_role }}">{{ $role->role }}</option>
-                    @endforeach
+                    @foreach ($roles as $role)
+                        <option value="{{$role->id_role}}"
+                            @if ($usr->id_role == $role->id_role)
+                                selected
+                            @endif
+                            >{{$role->role}}</option>
+                      @endforeach
                 </select>
                 <span class="help-block with-errors"></span>
             </div>
