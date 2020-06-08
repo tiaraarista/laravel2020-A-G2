@@ -38,7 +38,7 @@
                       <i class="fas fa-fw fa-list-alt fa-2x text-gray-300"></i>
                     </div>
                   </div>
-                  <a href="/user" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                  <a href="/categories" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
               </div>
             </div>

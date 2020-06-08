@@ -37,9 +37,13 @@
               <label >Category</label>
               <select name="id_kategori" class="form-control" required>
                   <option value="" disabled selected>Select a Category</option>
-                  @foreach($categories as $ctg)
-                  <option value="{{ $ctg->id_kategori }}">{{ $ctg->nama_kategori }}</option>
-                  @endforeach
+                      @foreach ($categories as $ctg)
+                        <option value="{{$ctg->id_kategori}}"
+                            @if ($pdc->id_kategori == $ctg->id_kategori)
+                                selected
+                            @endif
+                            >{{$ctg->nama_kategori}}</option>
+                      @endforeach
               </select>
               <span class="help-block with-errors"></span>
           </div>
