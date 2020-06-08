@@ -16,7 +16,7 @@ class UsersSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for($i = 1; $i <= 99; $i++){
+        for($i = 1; $i <= 24; $i++){
             DB::table('users')->insert([
                 'name' => $faker->name,
                 'email'=> $faker->safeEmail,
