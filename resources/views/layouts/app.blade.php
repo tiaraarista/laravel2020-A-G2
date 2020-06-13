@@ -88,7 +88,12 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>  
-                                    <img class="img-profile rounded-circle" style="width:25px;" src="{{ asset('images/user.png') }}">
+                                    <!-- <img class="img-profile rounded-circle" style="width:25px;" src="{{ asset('images/user.png') }}"> -->
+                                    @if(Auth::user()->avatar)
+                                        <img class="img-profile rounded-circle" style="width:25px;" src="{{ asset('/storage/' . Auth::user()->avatar) }}" alt="">
+                                    @else
+                                        <img class="img-profile rounded-circle" style="width:25px;" src="{{ asset('images/user.png') }}">
+                                    @endif
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
