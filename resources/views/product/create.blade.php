@@ -19,7 +19,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-    <form action="{{route('product.store')}}" method="post">
+    <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
 		{{ csrf_field() }}
         <input type="hidden" id="id" name="id">
         <div class="box-body">
@@ -44,8 +44,13 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Harga</label>
-                <input type="text" class="form-control" id="harga" name="harga"  autofocus required>
+                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga"  autofocus required>
                 <span class="help-block with-errors"></span>
+                @error('harga')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="box-body">
@@ -58,8 +63,37 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Qty</label>
-                <input type="text" class="form-control" id="qty" name="qty"  autofocus required>
+                <input type="text" class="form-control @error('qty') is-invalid @enderror" id="qty" name="qty"  autofocus required>
                 <span class="help-block with-errors"></span>
+                @error('qty')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label >Image</label>
+                <input type="file" class="form-control  @error('image') is-invalid @enderror" id="img" name="img" autofocus required>
+                <span class="help-block with-errors"></span>
+                @error('img')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label >Documet File</label><br>
+                <input type="file" class="form-control @error('document') is-invalid @enderror" id="document" name="document" autofocus required>
+                <span class="help-block with-errors"></span>
+                @error('document')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <input type="submit" class="btn btn-primary" value="Tambah Data">

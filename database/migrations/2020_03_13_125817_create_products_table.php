@@ -21,6 +21,8 @@ class CreateProductsTable extends Migration
             $table->integer('harga');
             $table->text('spesifikasi');
             $table->integer('qty');
+            $table->string('img')->nullable()->default(null);
+            $table->string('document')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('id_kategori')->references('id_kategori')->on('categories')->onDelete('cascade');

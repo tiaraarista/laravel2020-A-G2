@@ -26,6 +26,8 @@
             <th>Harga</th>
             <th><center>Spesifikasi</center></th>
             <th>Qty</th>
+            <th><center>Image<center></th>
+            <th><center>Document<center></th>
           </tr>
         </thead>
         <tfoot class="thead-light">
@@ -35,6 +37,8 @@
             <th>Harga</th>
             <th><center>Spesifikasi</center></th>
             <th>Qty</th>
+            <th><center>Image</center></th>
+            <th><center>Document</center></th>
           </tr>
         </tfoot>
         <tbody>
@@ -45,6 +49,25 @@
                 <td class="align-middle">{{ $brg->harga }}</td>
                 <td class="align-middle"><?php echo "$brg->spesifikasi";?></td>
                 <td class="align-middle">{{ $brg->qty }}</td>
+                <td class="align-middle">
+                  <center>
+                    @if($brg->img)
+                      <img src="{{ asset('/storage/' . $brg->img) }}" alt="{{ $brg->nama_barang }}" height="250px" weight="250px">
+                    @else
+                      <img src="https://img.icons8.com/color/64/000000/image-file.png" alt=""><br><a>Image Not Found</a>
+                    @endif
+                  </center>
+                </td>
+                <td class="align-middle">
+                  <center>
+                    @if($brg->document)
+                      <img src="https://img.icons8.com/ultraviolet/64/000000/pdf.png" alt=""><br>
+                      <a href="{{ asset('/storage/' . $brg->document) }}" target="_blank">Download PDF</a>
+                    @else
+                      <img src="https://img.icons8.com/ultraviolet/64/000000/pdf.png" alt=""><br><a>Pdf Not Found</a>
+                    @endif
+                  </center>
+                </td>
             </tr>
           @endforeach
         </tbody>

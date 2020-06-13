@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use DataTables;
+use Storage;
 
 class ProductController extends Controller
 {
@@ -62,12 +63,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'harga' => 'required|integer',
+            'qty' => 'required|integer',
+            'img' => 'required|image|mimes:jpeg,jpg,png,gif',
+            'document' => 'required|mimes:pdf',
+        ]);
+
         $product = new Product();
         $product->id_kategori = $request->input('id_kategori');
         $product->nama_barang = $request->input('nama');
         $product->harga = $request->input('harga');
         $product->spesifikasi = $request->input('spesifikasi');
         $product->qty = $request->input('qty');
+        $product->img = $request->file('img')->store('products');
+        $product->document = $request->file('document')->store('document-products');
         $product->save();
         
         return redirect('product')->with('success', 'Product baru telah ditambahkan');
@@ -109,16 +119,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id_barang)
     {
+        $validatedData = $request->validate([
+            'harga' => 'required|integer',
+            'qty' => 'required|integer',
+            'img' => 'required|image|mimes:jpeg,jpg,png,gif',
+            'document' => 'required|mimes:pdf',
+        ]);
+        
         $product = Product::findOrFail($id_barang);
         $product->nama_barang = $request->nama_barang;
         $product->id_kategori = $request->id_kategori;
         $product->harga = $request->harga;
         $product->spesifikasi = $request->spesifikasi;
         $product->qty = $request->qty;
+
+        if($product->img){
+            Storage::delete($product->img);
+        }
+        $product->img = $request->file('img')->store('products');
+
+        if($product->document){
+            Storage::delete($product->document);
+        }
+        $product->document = $request->file('document')->store('document-products');
+
         $product->save();
 
-         // alihkan halaman ke halaman Index
-            return redirect('/product')->with(['success' => 'Berhasil! diubah']);
+        return redirect('/product')->with(['success' => 'Berhasil! diubah']);
         
     }
 
@@ -130,7 +157,14 @@ class ProductController extends Controller
      */
     public function destroy(Request $request, $id_barang)
     {
+        $product = Product::findOrFail($id_barang);
+
+        if($product->img){
+            Storage::delete($product->img);
+        }
+
         Product::destroy($id_barang);
+        
         $nama_barang = $request->nama_barang;
         return redirect('/product')->with(['success' => 'Berhasil! '.$nama_barang.' berhasil dihapus.']);
     }
