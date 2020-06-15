@@ -19,7 +19,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-    <form action="{{route('user.store')}}" method="post">
+    <form action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
         <input type="hidden" id="id" name="id">
         <div class="box-body">
@@ -32,8 +32,13 @@
         <div class="box-body">
             <div class="form-group">
                 <label>Email</label>
-                <input type="text" class="form-control" id="email" name="email"  autofocus required>
+                <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"  autofocus required>
                 <span class="help-block with-errors"></span>
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="box-body">
@@ -53,6 +58,30 @@
                     @endforeach
                 </select>
                 <span class="help-block with-errors"></span>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label >Image</label>
+                <input type="file" class="form-control  @error('avatar') is-invalid @enderror" id="avatar" name="avatar" autofocus required>
+                <span class="help-block with-errors"></span>
+                @error('avatar')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label >Documet File</label><br>
+                <input type="file" class="form-control @error('document') is-invalid @enderror" id="document" name="document" autofocus required>
+                <span class="help-block with-errors"></span>
+                @error('document')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <input type="submit" class="btn btn-primary" value="Simpan">

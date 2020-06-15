@@ -60,11 +60,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'email' => 'required|unique:users',
+            'avatar' => 'required|image|mimes:jpeg,jpg,png,gif',
+            'document' => 'required|mimes:pdf',
+        ]);
+
         $usr = new User;
         $usr->name = $request->get('nama');
         $usr->email = $request->get('email');
         $usr->password= bcrypt($request->password);
         $usr->id_role = $request->input('id_role');
+        $usr->avatar = $request->file('avatar')->store('avatars');
+        $usr->document = $request->file('document')->store('document-users');
         $usr->save();
         
         return redirect('user')->with('success', 'User baru telah ditambahkan');
@@ -106,10 +114,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        $validatedData = $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,jpg,png,gif',
+            'document' => 'required|mimes:pdf',
+        ]);
+
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->id_role = $request->id_role;
+        $user->avatar = $request->file('avatar')->store('avatars');
+        $user->document = $request->file('document')->store('document-users');
         $user->save();
 
          return redirect('/user')->with(['success' => 'Berhasil diubah ']);

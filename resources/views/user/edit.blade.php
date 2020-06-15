@@ -20,7 +20,7 @@
   <div class="card-body">
     <div class="table-responsive">
     @foreach ($user as $usr)
-    <form action="{{route('user.update', $usr->id)}}" method="POST" class="needs-validation" novalidate>
+    <form action="{{route('user.update', $usr->id)}}" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" placeholder="nama" name="old_name" value="{{ $usr->name }}">
@@ -52,6 +52,30 @@
                       @endforeach
                 </select>
                 <span class="help-block with-errors"></span>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label >Avatar</label>
+                <input type="file" class="form-control  @error('avatar') is-invalid @enderror" id="avatar" name="avatar" autofocus required>
+                <span class="help-block with-errors"></span>
+                @error('avatar')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label >Documet File</label><br>
+                <input type="file" class="form-control @error('document') is-invalid @enderror" id="document" name="document" autofocus required>
+                <span class="help-block with-errors"></span>
+                @error('document')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <input type="submit" class="btn btn-primary" value="Edit Data">
