@@ -80,7 +80,7 @@ class ProductController extends Controller
         $product->document = $request->file('document')->store('document-products');
         $product->save();
         
-        return redirect('product')->with('success', 'Product baru telah ditambahkan');
+        return redirect('product')->with('success', 'Product baru berhasil ditambahkan');
     }
 
     /**
@@ -104,9 +104,8 @@ class ProductController extends Controller
     public function edit($id_barang)
     {
         $categories = Category::all();
-        // mengambil data Produk berdasarkan id yang dipilih
         $product = Product::where('id_barang',$id_barang)->get();
-        // passing data produk yang didapat ke view edit.blade.php
+        
         return view('product.edit',['product' => $product, 'categories' => $categories]);
     }
 
@@ -145,7 +144,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect('/product')->with(['success' => 'Berhasil! diubah']);
+        return redirect('/product')->with(['success' => 'Berhasil diubah']);
         
     }
 
@@ -164,8 +163,7 @@ class ProductController extends Controller
         }
 
         Product::destroy($id_barang);
-        
-        $nama_barang = $request->nama_barang;
-        return redirect('/product')->with(['success' => 'Berhasil! '.$nama_barang.' berhasil dihapus.']);
+
+        return redirect('/product')->with(['success' => 'Produk berhasil dihapus']);
     }
 }

@@ -93,7 +93,7 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $user = User::where('id',$id)->get();
-        // passing data user yang didapat ke view edit.blade.php
+        
         return view('user.edit',['user' => $user, 'roles' => $roles]);
     }
 
@@ -112,8 +112,7 @@ class UserController extends Controller
         $user->id_role = $request->id_role;
         $user->save();
 
-         // alihkan halaman ke halaman Index
-         return redirect('/user')->with(['success' => 'Berhasil! mengubah ']);
+         return redirect('/user')->with(['success' => 'Berhasil diubah ']);
     }
 
     /**
@@ -125,8 +124,8 @@ class UserController extends Controller
     public function destroy(Request $request, $id)
     {
         User::destroy($id);
-        $nama = $request->name;
-        return redirect('/user')->with(['success' => 'Berhasil! Data '.$nama.' berhasil dihapus.']);
+
+        return redirect('/user')->with(['success' => 'User berhasil dihapus']);
     }
     
 }

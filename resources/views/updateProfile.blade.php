@@ -4,7 +4,12 @@
 @endsection
 
 @section('content')
-@include('sweet::alert')
+@if(Session::has('success'))
+    <div class="alert alert-success">
+        <strong>Success: </strong>{{ Session::get('success') }}
+        <button type="button" class="close" data-dismiss="alert">×</button> 
+    </div>
+@endif
 <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">

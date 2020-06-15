@@ -69,7 +69,7 @@ class StockoutController extends Controller
         $product->save();
         $stockout->save();
         
-        return redirect('stockout')->with('success', 'Stock baru telah ditambahkan');
+        return redirect('stockout')->with('success', 'Stock keluar baru berhasil ditambahkan');
     }
 
     /**
@@ -116,6 +116,6 @@ class StockoutController extends Controller
     public function destroy($id_stockout)
     {
         Stockout::destroy($id_stockout);
-        return redirect('/stockout')->with(['success' => 'Berhasil! Stok berhasil dihapus.']);
+        return redirect('/stockout')->with(['success' => 'Stok keluar berhasil dihapus']);
     }
 }

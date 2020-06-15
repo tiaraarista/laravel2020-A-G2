@@ -69,7 +69,7 @@ class StockinController extends Controller
         $product->save();
         $stockin->save();
         
-        return redirect('stockin')->with('success', 'Stock baru telah ditambahkan');
+        return redirect('stockin')->with('success', 'Stock masuk baru berhasil ditambahkan');
     }
 
     /**
@@ -116,6 +116,6 @@ class StockinController extends Controller
     public function destroy($id_stockin)
     {
         Stockin::destroy($id_stockin);
-        return redirect('/stockin')->with(['success' => 'Berhasil! Stok berhasil dihapus.']);
+        return redirect('/stockin')->with(['success' => 'Stok masuk berhasil dihapus']);
     }
 }
