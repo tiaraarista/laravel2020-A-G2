@@ -70,7 +70,7 @@ $(function() {
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'nama_barang', name: 'nama_barang'},
             {data: 'nama_kategori', name: 'nama_kategori'},
-            {data: 'harga', name: 'harga'},
+            {data: 'harga', name: 'harga' , render: $.fn.dataTable.render.number( ',', '.', 2, 'Rp. ' )},
             {data: 'qty', name: 'qty'},
             {data: 'action', name: 'action',orderable : false, searchable: false, sClass: 'text-center'}
            ]
