@@ -64,11 +64,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama_kategori' => 'required|unique:categories',
+            'category_name' => 'required|unique:categories,nama_kategori',
         ]);
 
         $ctg = new Category;
-        $ctg->nama_kategori = $request->get('nama_kategori');
+        $ctg->nama_kategori = $request->get('category_name');
         $ctg->save();
         
         return redirect('categories')->with('success', 'Kategori baru berhasil ditambahkan');
@@ -110,8 +110,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id_kategori)
     {
+        $validatedData = $request->validate([
+            'category_name' => 'required',
+        ]);
+
         $category = Category::findOrFail($id_kategori);
-        $category->nama_kategori = $request->nama_kategori;
+        $category->nama_kategori = $request->category_name;
         $category->save();
 
         return redirect('/categories')->with(['success' => 'Berhasil diubah']);

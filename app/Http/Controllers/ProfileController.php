@@ -32,6 +32,8 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
             'avatar' => 'required|image|mimes:jpeg,jpg,png,gif',
         ]);
         

@@ -64,16 +64,19 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'harga' => 'required|integer',
+            'product_name' => 'required|unique:products,nama_barang',
+            'id_category' => 'required',
+            'price' => 'required|integer',
             'qty' => 'required|integer',
+            'spesifikasi' => 'required',
             'img' => 'required|image|mimes:jpeg,jpg,png,gif',
             'document' => 'required|mimes:pdf',
         ]);
 
         $product = new Product();
-        $product->id_kategori = $request->input('id_kategori');
-        $product->nama_barang = $request->input('nama');
-        $product->harga = $request->input('harga');
+        $product->id_kategori = $request->input('id_category');
+        $product->nama_barang = $request->input('product_name');
+        $product->harga = $request->input('price');
         $product->spesifikasi = $request->input('spesifikasi');
         $product->qty = $request->input('qty');
         $product->img = $request->file('img')->store('products');
@@ -119,16 +122,19 @@ class ProductController extends Controller
     public function update(Request $request, $id_barang)
     {
         $validatedData = $request->validate([
-            'harga' => 'required|integer',
+            'product_name' => 'required',
+            'id_category' => 'required',
+            'price' => 'required|integer',
             'qty' => 'required|integer',
+            'spesifikasi' => 'required',
             'img' => 'required|image|mimes:jpeg,jpg,png,gif',
             'document' => 'required|mimes:pdf',
         ]);
         
         $product = Product::findOrFail($id_barang);
-        $product->nama_barang = $request->nama_barang;
-        $product->id_kategori = $request->id_kategori;
-        $product->harga = $request->harga;
+        $product->nama_barang = $request->product_name;
+        $product->id_kategori = $request->id_category;
+        $product->harga = $request->price;
         $product->spesifikasi = $request->spesifikasi;
         $product->qty = $request->qty;
 

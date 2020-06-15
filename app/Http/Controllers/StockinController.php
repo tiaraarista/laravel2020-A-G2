@@ -61,10 +61,15 @@ class StockinController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'product_id' => 'required',
+            'qty' => 'required|integer',
+        ]);
+
         $stockin = new Stockin();
-        $stockin->id_barang = $request->input('id_barang');
+        $stockin->id_barang = $request->input('product_id');
         $stockin->qty = $request->input('qty');
-        $product = Product::findOrFail($request->id_barang);
+        $product = Product::findOrFail($request->product_id);
         $product->qty += $request->qty;
         $product->save();
         $stockin->save();

@@ -18,58 +18,45 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-    <form action="{{route('stockin.store')}}" method="post">
+    <form action="{{route('stockin.store')}}" method="post" novalidate>
 		{{ csrf_field() }}
         <input type="hidden" id="id" name="id">
         <div class="box-body">
           <div class="form-group">
               <label >Barang</label>
-              <select name="id_barang" class="form-control" required>
+              <select name="product_id" class="form-control @error('product_id') is-invalid @enderror" required>
                   <option value="" disabled selected>Select a Product</option>
                   @foreach($products as $brg)
                   <option value="{{ $brg->id_barang }}">{{ $brg->nama_barang }}</option>
                   @endforeach
               </select>
               <span class="help-block with-errors"></span>
+                @error('product_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
           </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label >Qty</label>
-                <input type="text" class="form-control" id="qty" name="qty"  autofocus required>
+                <input type="text" class="form-control @error('qty') is-invalid @enderror" id="qty" name="qty"  autofocus required>
                 <span class="help-block with-errors"></span>
+                @error('qty')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <input type="submit" class="btn btn-primary" value="Tambah Data">
         <a href="/stockin" class="btn btn-outline-primary">Kembali</a>
-	</form>
+	    </form>
     </div>
   </div>
 </div>
 
 </div>
 <!-- /.container-fluid -->
-
-<!-- JS Validasi -->
-<script>
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
-
-
 @endsection

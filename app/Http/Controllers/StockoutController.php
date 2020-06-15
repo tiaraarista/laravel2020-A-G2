@@ -61,10 +61,15 @@ class StockoutController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'product_id' => 'required',
+            'qty' => 'required|integer',
+        ]);
+
         $stockout = new Stockout();
-        $stockout->id_barang = $request->input('id_barang');
+        $stockout->id_barang = $request->input('product_id');
         $stockout->qty = $request->input('qty');
-        $product = Product::findOrFail($request->id_barang);
+        $product = Product::findOrFail($request->product_id);
         $product->qty -= $request->qty;
         $product->save();
         $stockout->save();

@@ -19,34 +19,44 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-    <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('product.store')}}" method="post" novalidate enctype="multipart/form-data">
 		{{ csrf_field() }}
         <input type="hidden" id="id" name="id">
         <div class="box-body">
             <div class="form-group">
-                <label >Name</label>
-                <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
+                <label>Product Name</label>
+                <input type="text" class="form-control @error('product_name') is-invalid @enderror" id="product_name" name="product_name"  autofocus required>
                 <span class="help-block with-errors"></span>
+                @error('product_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="box-body">
           <div class="form-group">
               <label >Category</label>
-              <select name="id_kategori" class="form-control" required>
+              <select name="id_category" class="form-control @error('id_category') is-invalid @enderror" required>
                   <option value="" disabled selected>Select a Category</option>
                   @foreach($categories as $ctg)
                   <option value="{{ $ctg->id_kategori }}">{{ $ctg->nama_kategori }}</option>
                   @endforeach
               </select>
               <span class="help-block with-errors"></span>
+                @error('id_category')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
           </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label >Harga</label>
-                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga"  autofocus required>
+                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"  autofocus required>
                 <span class="help-block with-errors"></span>
-                @error('harga')
+                @error('price')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -56,8 +66,13 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Spesifikasi</label>
-                <textarea type="text" class="form-control" id="editor" name="spesifikasi" required></textarea>
+                <textarea type="text" class="form-control @error('spesifikasi') is-invalid @enderror" id="editor" name="spesifikasi" required></textarea>
                 <span class="help-block with-errors"></span>
+                @error('spesifikasi')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="box-body">
@@ -75,7 +90,7 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Image</label>
-                <input type="file" class="form-control  @error('image') is-invalid @enderror" id="img" name="img" autofocus required>
+                <input type="file" class="form-control  @error('img') is-invalid @enderror" id="img" name="img" autofocus required>
                 <span class="help-block with-errors"></span>
                 @error('img')
                     <span class="invalid-feedback" role="alert">
@@ -105,27 +120,6 @@
 
 </div>
 <!-- /.container-fluid -->
-
-<!-- JS Validasi -->
-<script>
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
 
 
 @endsection

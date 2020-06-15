@@ -19,14 +19,19 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-    <form action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('user.store')}}" method="post" novalidate enctype="multipart/form-data">
     {{ csrf_field() }}
         <input type="hidden" id="id" name="id">
         <div class="box-body">
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"  autofocus required>
                 <span class="help-block with-errors"></span>
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="box-body">
@@ -44,20 +49,30 @@
         <div class="box-body">
             <div class="form-group">
                 <label>Password</label>
-                <input type="text" class="form-control" id="password" name="password"  autofocus required>
+                <input type="text" class="form-control @error('password') is-invalid @enderror" id="password" name="password"  autofocus required>
                 <span class="help-block with-errors"></span>
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label >Role</label>
-                <select name="id_role" class="form-control" required>
+                <select name="id_role" class="form-control @error('id_role') is-invalid @enderror" required>
                     <option value="" disabled selected>Select a Role</option>
                     @foreach($roles as $role)
                     <option value="{{ $role->id_role }}">{{ $role->role }}</option>
                     @endforeach
                 </select>
                 <span class="help-block with-errors"></span>
+                @error('id_role')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="box-body">
@@ -90,28 +105,5 @@
     </div>
   </div>
 </div>
-
 </div>
-
-<!-- /.container-fluid -->
-<script>
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
-
 @endsection

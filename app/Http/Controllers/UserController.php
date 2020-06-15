@@ -61,13 +61,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'name' => 'required',
             'email' => 'required|unique:users',
+            'password' => 'required|min:8',
+            'id_role' => 'required',
             'avatar' => 'required|image|mimes:jpeg,jpg,png,gif',
             'document' => 'required|mimes:pdf',
         ]);
 
         $usr = new User;
-        $usr->name = $request->get('nama');
+        $usr->name = $request->get('name');
         $usr->email = $request->get('email');
         $usr->password= bcrypt($request->password);
         $usr->id_role = $request->input('id_role');
@@ -114,8 +117,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'id_role' => 'required',
             'avatar' => 'required|image|mimes:jpeg,jpg,png,gif',
             'document' => 'required|mimes:pdf',
         ]);

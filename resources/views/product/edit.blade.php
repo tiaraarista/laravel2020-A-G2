@@ -28,14 +28,19 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Name</label>
-                <input type="text" class="form-control" name="nama_barang" value="{{ $pdc->nama_barang }}" autofocus required>
+                <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="product_name" value="{{ $pdc->nama_barang }}" autofocus required>
                 <span class="help-block with-errors"></span>
+                @error('product_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="box-body">
           <div class="form-group">
               <label >Category</label>
-              <select name="id_kategori" class="form-control" required>
+              <select name="id_category" class="form-control @error('id_category') is-invalid @enderror" required>
                   <option value="" disabled selected>Select a Category</option>
                       @foreach ($categories as $ctg)
                         <option value="{{$ctg->id_kategori}}"
@@ -46,14 +51,19 @@
                       @endforeach
               </select>
               <span class="help-block with-errors"></span>
+                @error('id_category')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
           </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label >Harga</label>
-                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ $pdc->harga }}" autofocus required>
+                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ $pdc->harga }}" autofocus required>
                 <span class="help-block with-errors"></span>
-                @error('harga')
+                @error('price')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -63,8 +73,13 @@
         <div class="box-body">
             <div class="form-group">
                 <label >Spesifikasi</label>
-                <textarea type="text" class="form-control" id="editor" name="spesifikasi" required><?php echo "$pdc->spesifikasi";?></textarea>
+                <textarea type="text" class="form-control @error('spesifikasi') is-invalid @enderror" id="editor" name="spesifikasi" required><?php echo "$pdc->spesifikasi";?></textarea>
                 <span class="help-block with-errors"></span>
+                @error('spesifikasi')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="box-body">
@@ -124,25 +139,5 @@
 
 </div>
 <!-- /.container-fluid -->
-
-<script>
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
 
 @endsection

@@ -26,9 +26,14 @@
         <input type="hidden" placeholder="nama" name="old_name" value="{{ $ctg->nama_kategori }}">
         <div class="box-body">
             <div class="form-group">
-                <label >Name</label>
-                <input type="text" class="form-control" name="nama_kategori" value="{{ $ctg->nama_kategori }}" autofocus required>
+                <label >Category Name</label>
+                <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" value="{{ $ctg->nama_kategori }}" autofocus required>
                 <span class="help-block with-errors"></span>
+                @error('category_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <input type="submit" class="btn btn-primary" value="Edit Data">
@@ -41,26 +46,4 @@
 
 </div>
 <!-- /.container-fluid -->
-
-<!-- JS Validasi -->
-<script>
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
-
 @endsection

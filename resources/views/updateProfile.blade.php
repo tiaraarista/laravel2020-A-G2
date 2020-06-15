@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('update-profile.update') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('update-profile.update') }}" novalidate enctype="multipart/form-data">
                             @method('patch')
                             @csrf
 

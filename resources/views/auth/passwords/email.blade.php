@@ -15,7 +15,7 @@
 					<br><img src="{{ asset('images/img-login.png') }}" alt="IMG">
 				</div>
 
-                <form class="login100-form validate-form" action="{{ route('password.email') }}" method="POST">
+                <form class="login100-form validate-form" action="{{ route('password.email') }}" method="POST" novalidate>
                 @csrf
                     <span class="login100-form-title"  style="margin-top: 50px">Forgot Your Password?</span>
                     <p>Just enter your email address below and we'll send you a link to reset your password!</p><br>

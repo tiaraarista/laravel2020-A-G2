@@ -28,7 +28,7 @@
 					<img src="{{ asset('images/img-login.png') }}" alt="IMG">
 				</div>
 
-		<form class="login100-form validate-form" action="{{ route('register') }}" method="POST">
+		<form class="login100-form validate-form" action="{{ route('register') }}" method="POST" novalidate>
         @csrf
 			<span class="login100-form-title"style="margin-top: 30px">Create an Account!</span>
 
