@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->integer('id_role')->unsigned()->default('2');
             $table->string('avatar')->nullable()->default(null);
             $table->string('document')->nullable()->default(null);
+            $table->string('provider')->nullable()->default(null);
+            $table->string('provider_id')->nullable()->default(null);
             $table->rememberToken();
             $table->timestamps();
         });

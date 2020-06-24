@@ -23,6 +23,9 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+Route::get('auth/{provider}', 'Auth\SocialiteController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\SocialiteController@handleProviderCallback');
+
 Route::middleware('auth')->group(function(){
     Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
     Route::resource('user', 'UserController');

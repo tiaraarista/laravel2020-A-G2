@@ -20,7 +20,7 @@
 
 		<form class="login100-form validate-form" action="{{ route('login') }}" method="POST" novalidate>
         @csrf
-			<span class="login100-form-title" style="margin-top: 30px">Login Dulu Gaes</span>
+			<span class="login100-form-title" style="margin-top: 30px">Login</span>
 
 			<div class="wrap-input100 validate-input">
 				<input class=" form-control @error('email') is-invalid @enderror" placeholder="Email" id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -66,7 +66,11 @@
                     <a class="txt2" href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
                 </div>
             @endif
-            </div>
+            </div><br>
+            <!-- <br><label>{{ __('Sign in With Your Account') }}</label><br> -->
+            <a href="{{ url('/auth/google') }}" class="btn btn-google"><i class="fa fa-google"></i>{{ __(' Sign in With Your Google Account') }}</a>
+            <!-- <a href="{{ url('/auth/github') }}" class="btn btn-light"><i class="fa fa-github"></i></a>
+            <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook"><i class="fa fa-facebook"></i></a> -->
 		</form>
 	</div>
 </div></center>
