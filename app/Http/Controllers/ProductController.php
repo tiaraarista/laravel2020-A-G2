@@ -168,6 +168,10 @@ class ProductController extends Controller
             Storage::delete($product->img);
         }
 
+        if($product->document){
+            Storage::delete($product->document);
+        }
+
         Product::destroy($id_barang);
 
         return redirect('/product')->with(['success' => 'Produk berhasil dihapus']);
