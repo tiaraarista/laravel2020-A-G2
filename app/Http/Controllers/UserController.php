@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use DataTables;
+use Storage;
 
 class UserController extends Controller
 {
@@ -129,7 +130,15 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->id_role = $request->id_role;
+
+        if($user->avatar){
+            Storage::delete($user->avatar);
+        }
         $user->avatar = $request->file('avatar')->store('avatars');
+
+        if($user->document){
+            Storage::delete($user->document);
+        }
         $user->document = $request->file('document')->store('document-users');
         $user->save();
 
@@ -143,7 +152,17 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
-    {
+    {   
+        $user = User::findOrFail($id);
+
+        if($user->avatar){
+            Storage::delete($user->avatar);
+        }
+
+        if($user->document){
+            Storage::delete($user->document);
+        }
+
         User::destroy($id);
 
         return redirect('/user')->with(['success' => 'User berhasil dihapus']);
